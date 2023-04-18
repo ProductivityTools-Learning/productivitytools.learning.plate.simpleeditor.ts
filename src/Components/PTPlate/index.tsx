@@ -1,11 +1,20 @@
 import React from "react";
 import { Plate, TEditableProps } from "@udecode/plate";
 
-function PTPlate() {
+type Props<PTPlateProps> = {
+  content: string;
+};
+
+function PTPlate<PTPlateProps>({ content }: Props<PTPlateProps>) {
   const editableProps: TEditableProps = {
     placeholder: "Type...",
   };
-  return <Plate editableProps={editableProps}></Plate>;
+  return (
+    <div>
+      <Plate editableProps={editableProps}></Plate>
+      <span>{content}</span>
+    </div>
+  );
 }
 
 export default PTPlate;
