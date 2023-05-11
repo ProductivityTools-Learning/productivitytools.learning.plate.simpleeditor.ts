@@ -15,8 +15,9 @@ function App() {
       <br></br>
       raw content:{content}
       <br></br>
-      <span>plate:</span>
+      <span>plate1:</span>
       <div>{getPlate(content)}</div>
+      <span>plate2:</span>
       <PTPlate content={content}></PTPlate>
     </div>
   );

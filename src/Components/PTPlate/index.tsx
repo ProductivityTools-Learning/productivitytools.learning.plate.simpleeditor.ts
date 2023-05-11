@@ -50,6 +50,7 @@ function PTPlate<PTPlateProps>({ content }: Props<PTPlateProps>) {
       <Plate editableProps={editableProps} initialValue={formatedValue} value={formatedValue}>
         <ResetEditorOnValueChange value={content} />
       </Plate>
+      <span>Plate content:</span>
       <span>{content}</span>
     </div>
   );
