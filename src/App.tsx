@@ -1,24 +1,38 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useState, useRef } from "react";
 import PTPlate from "./Components/PTPlate";
+import { MyParagraphElement, MyValue } from "./Components/PTPlate/typescript/plateTypes";
+
+
+const initialValue = (content: string) => [
+  {
+    type: "p",
+    children: [
+      {
+        text: content,
+      },
+    ],
+  } as MyParagraphElement,
+];
 
 function App() {
-  const [content, setContent] = useState<string>("initial valueww");
+ // const [content, setContent] = useState<string>("[{\"type\":\"title\",\"children\":[{\"text\":\"SWE Salary Zurich L7\"}]},{\"type\":\"paragraph\",\"children\":[{\"text\":\"The US base salary range for this full-time position is $218,000-$326,000 + bonus + equity + benefits. Transfer compensation is determined algorithmically and is non-negotiable. Your recruiter will share more about the specific salary for your targeted location during the hiring process\"}]}]");
+ const [content, setContent] = useState<MyParagraphElement[]>( JSON.parse("[{\"type\":\"title\",\"children\":[{\"text\":\"121\"}]},{\"type\":\"unorderedList\",\"children\":[{\"type\":\"list-item\",\"children\":[{\"text\":\"\"},{\"type\":\"link\",\"href\":\"https://cloud.google.com/blog/topics/developers-practitioners/troubleshooting-cloud-functions-connection-issues-cloud-sql-private-ips/\",\"children\":[{\"text\":\"Blog \"}]},{\"text\":\"opublikowany\"}]},{\"type\":\"list-item\",\"children\":[{\"text\":\"\"},{\"type\":\"link\",\"href\":\"https://www.youtube.com/watch?time_continue=9&v=eSP4Y9fDDkQ&feature=emb_logo&themeRefresh=1\",\"children\":[{\"text\":\"Youtube \"}]},{\"text\":\"opublikowane\"}]},{\"type\":\"list-item\",\"children\":[{\"text\":\"Przeprowadziła się do nowego domu, \"}]},{\"type\":\"list-item\",\"children\":[{\"text\":\"Nie wie jak będzie się komunikować\"}]}]}]"));
 
-  const getPlate: React.FC<string> = (content: string): ReactElement => {
-    console.log("get componetn")
-    return <PTPlate content={content}></PTPlate>;
-  };
+  const setRawContent=(value:string)=>{
+    let x:MyParagraphElement[]=initialValue(value);
+    setContent(x);
+  }
+  const isFirst = useRef(true);
+
   return (
     <div className="App">
       hello
-      <input type="text" onChange={(x) => setContent(x.target.value)}></input>
+      <input type="text" onChange={(x) => setRawContent(x.target.value)}></input>
       <br></br>
-      raw content:{content}
-      <br></br>
-      <span>plate1:</span>
-      <div>{getPlate(content)}</div>
+      raw content:{JSON.stringify(content)}
+      <br></br>  <br></br>  <br></br>  <br></br>
       <span>plate2:</span>
-      <PTPlate content={content}></PTPlate>
+      <PTPlate propValue={content} ></PTPlate>
     </div>
   );
 }

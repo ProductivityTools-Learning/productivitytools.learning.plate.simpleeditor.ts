@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Plate, useResetPlateEditor } from "@udecode/plate";
+import { Plate, TEditableProps, TElement, useResetPlateEditor } from "@udecode/plate";
 import { MyParagraphElement, MyValue } from "./typescript/plateTypes";
 
 const ResetEditorOnValueChange = ({ value }: { value: MyParagraphElement[] }) => {

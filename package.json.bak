@@ -7,7 +7,6 @@
     "@types/node": "^16.18.30",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
-    "@types/styled-components": "^5.1.26",
     "@udecode/plate": "^20.6.3",
     "@udecode/plate-basic-elements": "^20.4.0",
     "react": "^18.2.0",
@@ -15,7 +14,7 @@
     "react-scripts": "5.0.1",
     "slate": "^0.93.0",
     "slate-history": "^0.93.0",
-    "slate-hyperscript": "0.77.0",
+    "slate-hyperscript": "^0.77.0",
     "slate-react": "^0.93.0",
     "styled-components": "^5.3.9",
     "typescript": "^4.9.5",
@@ -44,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26"
   }
 }
