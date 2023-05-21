@@ -3,18 +3,24 @@ import { Plate, useResetPlateEditor } from "@udecode/plate";
 import { MyParagraphElement, MyValue } from "./typescript/plateTypes";
 
 const ResetEditorOnValueChange = ({ value }: { value: MyParagraphElement[] }) => {
+  console.log("ResetEditorOnValueChange")
   const resetPlateEditor = useResetPlateEditor();
   const isFirst = useRef(true);
-  console.log("useffect2");
+  console.log("isFirst");
+  console.log(isFirst);
   useEffect(() => {
+    console.log("useEffect");
+    console.log(isFirst);
+     
     if (isFirst.current) {
-      console.log("useffect1");
+      console.log("isFirst.current");
+      console.log(isFirst);  
       isFirst.current = false;
       return;
     }
-
     resetPlateEditor();
   }, [value, resetPlateEditor]);
+  console.log("return null");
 
   return null;
 };
