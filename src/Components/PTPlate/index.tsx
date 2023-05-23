@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Plate, useResetPlateEditor } from "@udecode/plate";
+import { Plate, TEditableProps, useResetPlateEditor } from "@udecode/plate";
 import { MyParagraphElement, MyValue } from "./typescript/plateTypes";
 
 const ResetEditorOnValueChange = ({ value }: { value: MyParagraphElement[] }) => {
@@ -37,11 +37,15 @@ const initialValue = (content: string) => [
   } as MyParagraphElement,
 ];
 
+type PTPlateContentChanged=(content:MyParagraphElement[])=>void;
+
+
 type Props<PTPlateProps> = {
-  content: MyParagraphElement[];
+  content: MyParagraphElement[],
+  contentChanged:PTPlateContentChanged
 };
 
-function PTPlate<PTPlateProps>({ content }: Props<PTPlateProps>) {
+function PTPlate<PTPlateProps>({ content,contentChanged }: Props<PTPlateProps>) {
   const [value, setValue] = useState<MyParagraphElement[]>(content);
   const [resetValue, setResetValue] = useState<MyParagraphElement[]>(content);
 
@@ -54,6 +58,11 @@ function PTPlate<PTPlateProps>({ content }: Props<PTPlateProps>) {
 
   const change = (e: MyParagraphElement[]) => {
     setValue(e);
+    contentChanged(e);
+  };
+
+  const editableProps: TEditableProps = {
+    placeholder: "Type2...",
   };
 
   return (

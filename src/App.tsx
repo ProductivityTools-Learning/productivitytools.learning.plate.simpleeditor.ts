@@ -22,7 +22,11 @@ function App() {
     let x:MyParagraphElement[]=initialValue(value);
     setContent(x);
   }
-  const isFirst = useRef(true);
+
+  const [changedContent,setChangedContent]=useState<MyParagraphElement[]>(initialValue("emppty"));
+  const contentChanged=(e:MyParagraphElement[])=>{
+    setChangedContent(e);
+  }
 
   return (
     <div className="App">
@@ -32,7 +36,8 @@ function App() {
       raw content:{JSON.stringify(content)}
       <br></br>  <br></br>  <br></br>  <br></br>
       <span>plate2:</span>
-      <PTPlate propValue={content} ></PTPlate>
+      <PTPlate content={content} contentChanged={contentChanged} ></PTPlate>
+      changed content:{JSON.stringify(changedContent)}
     </div>
   );
 }
