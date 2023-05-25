@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Plate, TEditableProps, useResetPlateEditor } from "@udecode/plate";
 import { MyParagraphElement, MyValue } from "./typescript/plateTypes";
 
-const ResetEditorOnValueChange = ({ value }: { value: MyParagraphElement[] }) => {
+const ResetEditorOnValueChange = ({ value }: { value?: MyParagraphElement[] }) => {
   // console.log("ResetEditorOnValueChange");
   // console.log(value);
   const resetPlateEditor = useResetPlateEditor();
@@ -42,7 +42,7 @@ type PTPlateContentChanged=(content:MyParagraphElement[])=>void;
 
 type Props<PTPlateProps> = {
   content: MyParagraphElement[],
-  forceResetContent: MyParagraphElement[],
+  forceResetContent?: MyParagraphElement[],
   contentChanged:PTPlateContentChanged
   
 };
@@ -72,7 +72,7 @@ function PTPlate<PTPlateProps>({ content, forceResetContent,  contentChanged }: 
       PlateX2
       {/* <Plate<MyParagraphElement[]> editableProps={{ placeholder: "Type…" }} value={debugValue}> */}
       <Plate<MyParagraphElement[]> editableProps={{ placeholder: "Type…" }} value={value} onChange={change}>
-        <ResetEditorOnValueChange value={content} />
+        <ResetEditorOnValueChange value={forceResetContent} />
       </Plate>
       {/* <span>Plate content:</span>
       <span>{JSON.stringify(content)}</span> */}
