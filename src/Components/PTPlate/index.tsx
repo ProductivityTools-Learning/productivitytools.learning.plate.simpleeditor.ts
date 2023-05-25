@@ -42,23 +42,25 @@ type PTPlateContentChanged=(content:MyParagraphElement[])=>void;
 
 type Props<PTPlateProps> = {
   content: MyParagraphElement[],
+  forceResetContent: MyParagraphElement[],
   contentChanged:PTPlateContentChanged
+  
 };
 
-function PTPlate<PTPlateProps>({ content,contentChanged }: Props<PTPlateProps>) {
+function PTPlate<PTPlateProps>({ content, forceResetContent,  contentChanged }: Props<PTPlateProps>) {
   const [value, setValue] = useState<MyParagraphElement[]>(content);
-  const [resetValue, setResetValue] = useState<MyParagraphElement[]>(content);
+  // const [resetValue, setResetValue] = useState<MyParagraphElement[]>(content);
 
   //if we use directly prop value, there was a delay in updating field when propValue changed 
   //if we used value, the restet field was invoked every time when we started writing, which make writing not possible
   useEffect(() => {
     setValue(content);
-    setResetValue(content);
+   // setResetValue(content);
   }, [content]);
 
   const change = (e: MyParagraphElement[]) => {
     setValue(e);
-    contentChanged(e);
+    //contentChanged(e);
   };
 
   const editableProps: TEditableProps = {
@@ -70,7 +72,7 @@ function PTPlate<PTPlateProps>({ content,contentChanged }: Props<PTPlateProps>) 
       PlateX2
       {/* <Plate<MyParagraphElement[]> editableProps={{ placeholder: "Type…" }} value={debugValue}> */}
       <Plate<MyParagraphElement[]> editableProps={{ placeholder: "Type…" }} value={value} onChange={change}>
-        <ResetEditorOnValueChange value={resetValue} />
+        <ResetEditorOnValueChange value={content} />
       </Plate>
       {/* <span>Plate content:</span>
       <span>{JSON.stringify(content)}</span> */}
