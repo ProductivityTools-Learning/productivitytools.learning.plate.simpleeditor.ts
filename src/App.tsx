@@ -36,7 +36,7 @@ function App() {
       raw content:{JSON.stringify(content)}
       <br></br>  <br></br>  <br></br>  <br></br>
       <span>plate2:</span>
-      <PTPlate content={content} contentChanged={contentChanged} ></PTPlate>
+      <PTPlate content={content} forceResetContent={content} contentChanged={contentChanged} ></PTPlate>
       changed content:{JSON.stringify(changedContent)}
     </div>
   );
