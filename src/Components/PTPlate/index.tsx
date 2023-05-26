@@ -40,17 +40,16 @@ const initialValue = (content: string) => [
 type PTPlateContentChanged=(content:MyParagraphElement[])=>void;
 
 
-type Props<PTPlateProps> = {
+export interface PTPlateProps {
   content: MyParagraphElement[],
-  forceResetContent?: MyParagraphElement[],
-  contentChanged:PTPlateContentChanged
-  
+  forceResetContent?: MyParagraphElement[];
+  contentChanged: PTPlateContentChanged;
 };
 
 //content sets initial content 
 //foceResetContent, resets editor and sets new content
 //we cannot use content to reset, as later we are binding content to use state and in the contentChange we are updating state, if we bind content to reset it results in constant refresh
-function PTPlate<PTPlateProps>({ content, forceResetContent,  contentChanged }: Props<PTPlateProps>) {
+export const PTPlate: React.FunctionComponent<PTPlateProps> = ({ content,forceResetContent, contentChanged }: PTPlateProps) => {
   const [value, setValue] = useState<MyParagraphElement[]|undefined>(content);
   const [resetValue, setResetValue] = useState<MyParagraphElement[]|undefined>(content);
 
@@ -82,4 +81,3 @@ function PTPlate<PTPlateProps>({ content, forceResetContent,  contentChanged }: 
   );
 }
 
-export default PTPlate;

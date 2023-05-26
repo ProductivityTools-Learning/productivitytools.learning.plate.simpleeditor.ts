@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useRef } from "react";
-import PTPlate from "./Components/PTPlate";
+import {PTPlate} from "./Components/PTPlate";
 import { MyParagraphElement, MyValue } from "./Components/PTPlate/typescript/plateTypes";
 
 
